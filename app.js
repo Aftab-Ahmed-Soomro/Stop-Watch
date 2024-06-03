@@ -1,14 +1,20 @@
 let hr = document.getElementById('hr');
 let min = document.getElementById('min');
 let sec = document.getElementById('sec');
+let ms = document.getElementById('ms');
 let start = document.getElementById('start');
 let stop = document.getElementById('stop');
 let rest;
+let msec = 0;
 let second = 0;
 let minute = 0;
 let hour = 0;
 function counter() {
-    second++;
+    msec++;
+    if (msec === 60) {
+        second++;
+        msec = 0;
+    }
     if (second === 60) {
         minute++;
         second = 0;
@@ -38,13 +44,19 @@ function counter() {
     else {
         sec.innerText = second
     }
+    if (msec < 10) {
+        ms.innerText = `0` + msec
+    }
+    else {
+        ms.innerText = msec
+    }
   
     start.setAttribute('disabled','disabled');
     stop.removeAttribute('disabled','disabled');
 }
 
 function counterStart() {
-    rest = setInterval(counter, 1000)
+    rest = setInterval(counter, 15);
 }
 
 function counterStop() {
@@ -57,9 +69,11 @@ function counterReset() {
     second = 0;
     minute = 0;
     hour = 0;
+    msec = 0;
     clearInterval(rest);
     hr.innerText = '00';   
     min.innerText = '00';   
     sec.innerText = '00';      
+    ms.innerText = '00';
     start.removeAttribute('disabled','disabled');  
 }
