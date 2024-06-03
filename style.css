@@ -16,7 +16,7 @@ body {
     margin: 30px auto 0;
     box-shadow: 0 10px 10px rgba(0,0,0,0.2);
 }
-.stopwatch h1 {
+.stopwatch span {
     margin-top: 60px;
     font-size: 64px;
     font-weight: 300;
